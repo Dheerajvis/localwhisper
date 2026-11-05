@@ -25,14 +25,14 @@ body {
   color: #FFFFFF;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Outer Wrapper (centered in transparent window) */
+/* Outer Wrapper (centered in transparent window with ample room for natural shadow falloff) */
 .pill-wrapper {
   position: relative;
   display: flex;
@@ -42,6 +42,7 @@ body {
   gap: 6px;
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
 
 /* ==========================================================================
@@ -112,8 +113,8 @@ body {
   border-radius: 9999px;
   border: 1px solid var(--glass-border);
   box-shadow: 
-    0 14px 36px rgba(0, 0, 0, 0.58),
-    0 2px 8px rgba(0, 0, 0, 0.35),
+    0 10px 24px rgba(0, 0, 0, 0.48),
+    0 2px 6px rgba(0, 0, 0, 0.30),
     inset 0 1px 1px rgba(255, 255, 255, 0.22),
     inset 0 -1px 1px rgba(0, 0, 0, 0.45);
   cursor: pointer;
@@ -131,7 +132,8 @@ body {
   background: rgba(26, 26, 32, 0.90);
   border-color: rgba(255, 255, 255, 0.26);
   box-shadow: 
-    0 16px 40px rgba(0, 0, 0, 0.65),
+    0 12px 28px rgba(0, 0, 0, 0.54),
+    0 2px 8px rgba(0, 0, 0, 0.35),
     inset 0 1px 1px rgba(255, 255, 255, 0.28);
 }
 
@@ -146,8 +148,8 @@ body {
   background: var(--glass-active-bg);
   border-color: var(--glass-active-border);
   box-shadow: 
-    0 18px 46px rgba(0, 0, 0, 0.72),
-    0 0 24px rgba(255, 255, 255, 0.08),
+    0 12px 28px rgba(0, 0, 0, 0.60),
+    0 0 18px rgba(107, 231, 167, 0.16),
     inset 0 1px 1.5px rgba(255, 255, 255, 0.32),
     inset 0 -1px 1px rgba(0, 0, 0, 0.5);
 }
@@ -335,8 +337,8 @@ body {
    ========================================================================== */
 .mini-context-menu {
   position: absolute;
-  top: 68px;
-  right: 14px;
+  top: calc(50% + 34px);
+  right: calc(50% - 90px);
   background: rgba(24, 24, 28, 0.92);
   backdrop-filter: blur(28px) saturate(200%);
   -webkit-backdrop-filter: blur(28px) saturate(200%);

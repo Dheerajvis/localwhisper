@@ -407,13 +407,13 @@ class LocalWhisperApp:
         ui_path = Path(__file__).resolve().parent / "ui" / "index.html"
         bridge = LocalWhisperBridge(self)
 
-        # Compact floating pill window (360x115 transparent container)
+        # Compact floating pill window (380x160 transparent container with complete shadow clearance)
         self.window = webview.create_window(
             title="LocalWhisper",
             url=f"file://{ui_path}",
             js_api=bridge,
-            width=360,
-            height=115,
+            width=380,
+            height=160,
             frameless=True,
             easy_drag=True,
             on_top=True,
