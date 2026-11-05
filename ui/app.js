@@ -32,16 +32,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const isMac = (navigator.userAgent || navigator.platform || '').toUpperCase().indexOf('MAC') >= 0;
+  const hkDisplay = isMac ? '⌘⇧Space' : 'Ctrl+Shift+Space';
+  pill.title = `Click to Record (${hkDisplay})`;
+
   // 1. State Handler called from Python
   window.updateState = function(state, details = '') {
     currentState = state;
 
     if (state === 'listening' || state === 'recording') {
       pill.className = 'minimal-pill active';
-      pill.title = 'Click to Stop Recording (⌘⇧Space)';
+      pill.title = `Click to Stop Recording (${hkDisplay})`;
     } else {
       pill.className = 'minimal-pill idle';
-      pill.title = 'Click to Record (⌘⇧Space)';
+      pill.title = `Click to Record (${hkDisplay})`;
       // Reset spectrum bar inline transforms when idle
       spectrumBars.forEach(b => {
         b.style.transform = '';

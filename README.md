@@ -6,19 +6,31 @@
 [![Python](https://img.shields.io/badge/Python-3.9%2B-green.svg)]()
 [![Faster-Whisper](https://img.shields.io/badge/Whisper-faster--whisper-orange.svg)]()
 [![Offline](https://img.shields.io/badge/Privacy-100%25%20Offline-success.svg)]()
+[![GitHub Release](https://img.shields.io/github/v/release/Dheerajvis/localwhisper)](https://github.com/Dheerajvis/localwhisper/releases)
 
-LocalWhisper is a privacy-first, completely local speech-to-text application inspired by **Wispr Flow / WhisperFlow** and the **Gemini voice typing** experience. Built with a signature **Kree8 Studio** aesthetic, it features a minimal floating capsule pill with audio-reactive spectrum waveforms and a comprehensive Obsidian & Mint Green Settings Dashboard.
+LocalWhisper is a privacy-first, completely local speech-to-text desktop application inspired by **Wispr Flow / WhisperFlow** and the **Gemini voice typing** experience. Built with a signature **Kree8 Studio** aesthetic, it features a minimal floating capsule pill with audio-reactive spectrum waveforms and a comprehensive Obsidian & Mint Green Settings Dashboard.
 
 It runs entirely on-device with **zero external API calls**, zero telemetry, and zero latency overhead.
 
 ---
 
+## 📦 Direct App Download (Ready to Run)
+
+Skip setup and download the pre-compiled builds directly from [**GitHub Releases**](https://github.com/Dheerajvis/localwhisper/releases):
+
+| Operating System | Download Link | Quick Instructions |
+| :--- | :--- | :--- |
+| **🍎 macOS (Apple Silicon M1/M2/M3/M4)** | [**LocalWhisper-v1.0.0-macOS-arm64.zip**](https://github.com/Dheerajvis/localwhisper/releases/download/v1.0.0/LocalWhisper-v1.0.0-macOS-arm64.zip) | Extract `.zip`, drag `LocalWhisper.app` to Applications, and double-click to launch. |
+| **🪟 Windows (10 / 11 64-bit)** | [**GitHub Releases**](https://github.com/Dheerajvis/localwhisper/releases) *(or 1-Click `run.bat` below)* | Download from Releases, or download repository zip and double-click `run.bat`. |
+
+---
+
 ## ✨ Features
 
-- 🔒 **100% Offline & Private**: Audio is recorded and processed locally on your machine. No cloud, no subscription, no telemetry.
+- 🔒 **100% Offline & Private**: Audio is recorded and transcribed in-memory on your machine. No cloud, no subscriptions, no telemetry.
 - ⚡ **Real-Time Live Dictation**: Words stream and type directly at your active text cursor in real time as you speak—no waiting for silence or hitting stop.
-- 🎯 **Continuous Hands-Free Mode (Gemini Style)**: Intelligent Voice Activity Detection (VAD) monitors your speech passively and automatically types when you talk.
-- 🛡️ **Hardware Fault-Tolerance & Auto-Fallback**: Automatically senses your active microphone and seamlessly cascades from disconnected Bluetooth earbuds (e.g. AirPods, realme Buds) to the built-in MacBook microphone without interrupting your session.
+- 🎯 **Continuous Hands-Free Mode (Gemini Style)**: Intelligent Voice Activity Detection (VAD) monitors your speech passively and automatically types when you speak.
+- 🛡️ **Hardware Fault-Tolerance & Auto-Fallback**: Automatically senses your active microphone and seamlessly cascades from disconnected Bluetooth earbuds (AirPods, Galaxy Buds, realme Buds) to the built-in microphone without interrupting your dictation.
 - 💊 **Minimalist Floating Capsule Pill**:
   - Ultra-sleek glassmorphic capsule that floats on top of all applications.
   - 6-dot drag grip to position anywhere on screen.
@@ -33,45 +45,52 @@ It runs entirely on-device with **zero external API calls**, zero telemetry, and
   - Intelligently converts spoken punctuation (*"comma", "new line", "bullet point"*).
   - Specialized formatting modes: **Smart Dictation**, **Developer/Code**, **Email**, and **Raw**.
 - ⌨️ **Global Hotkey & Direct Active Cursor Injection**:
-  - Press `Cmd + Shift + Space` (macOS) or `Ctrl + Shift + Space` (Windows) to dictate anywhere (Slack, VS Code, Browser, Notes, Terminal).
+  - Press `Cmd + Shift + Space` (macOS) or `Ctrl + Shift + Space` (Windows) to dictate anywhere (Slack, VS Code, Browser, Word, Notepad, Terminal).
   - Supports both **Toggle** and **Push-to-Talk** modes.
 
 ---
 
-## 🚀 Quick Start
+## 💻 Running on Windows
 
-### Prerequisites
-- **macOS** (macOS 11+ Big Sur, Monterey, Ventura, Sonoma, Sequoia) or **Windows 10/11**
-- **Python 3.9+**
+LocalWhisper is fully optimized for Windows 10 and Windows 11 with native active window tracking and text typing.
 
-### macOS / Linux
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/localwhisper.git
-cd localwhisper
+### Option 1: 1-Click Auto-Setup (`run.bat`)
+1. Download or clone this repository:
+   ```cmd
+   git clone https://github.com/Dheerajvis/localwhisper.git
+   cd localwhisper
+   ```
+2. Double-click `run.bat` (or run `run.bat` in Command Prompt / PowerShell).
+   - `run.bat` automatically checks Python 3.9+, creates an isolated `.venv`, installs requirements, and launches LocalWhisper.
+3. Start dictating with `Ctrl + Shift + Space` or `Ctrl + Alt + Space`.
 
-# Launch LocalWhisper (automatically sets up .venv & installs dependencies on first run)
-chmod +x run.sh
-./run.sh
-```
-
-### Windows
-Double-click `run.bat` or run in terminal:
-```cmd
-run.bat
-```
+### Windows Tips & Settings:
+- **Default Hotkey**: `Ctrl + Shift + Space` (toggle recording) or `Ctrl + Alt + Space`.
+- **Text Typing**: Automatically injects text directly into the focused window (Word, Notepad, Browser, Discord, VS Code, Slack).
+- **Microphone Access**: If prompted, ensure **Settings > Privacy & security > Microphone** is toggled ON for desktop apps.
+- **Acceleration**: Runs with 8-bit quantization (`int8`) on CPU out of the box for instantaneous inference with low RAM.
 
 ---
 
-## 🍏 Building the Native macOS Application Bundle
+## 🍏 Running on macOS
 
-To install LocalWhisper as a standalone native macOS `.app` in `~/Applications`:
+### Option 1: Pre-Built Standalone App
+1. Download [**LocalWhisper-v1.0.0-macOS-arm64.zip**](https://github.com/Dheerajvis/localwhisper/releases/download/v1.0.0/LocalWhisper-v1.0.0-macOS-arm64.zip).
+2. Unzip and move `LocalWhisper.app` to your `/Applications` or `~/Applications` folder.
+3. Double-click to launch.
 
+*Note on macOS Permissions:*
+On first launch, macOS will prompt for:
+1. **Microphone**: Required to capture audio offline.
+2. **Accessibility**: Required to type text directly at the cursor in your active applications. (If not prompted automatically, open **System Settings > Privacy & Security > Accessibility** and enable LocalWhisper).
+
+### Option 2: Run from Source (`run.sh`)
 ```bash
-# Compile and codesign the native Mach-O app bundle
-.venv/bin/python build_macos_app.py
+git clone https://github.com/Dheerajvis/localwhisper.git
+cd localwhisper
+chmod +x run.sh
+./run.sh
 ```
-This compiles a native Mach-O binary (`Contents/MacOS/LocalWhisper`) with standard entitlements and registers it with macOS LaunchServices. You can launch it directly from **Spotlight** (`⌘ Space -> LocalWhisper`) or **Finder**.
 
 ---
 
@@ -86,9 +105,9 @@ This compiles a native Mach-O binary (`Contents/MacOS/LocalWhisper`) with standa
 
 ---
 
-## 🧠 Local Models
+## 🧠 Local Whisper Models
 
-LocalWhisper uses [`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) (CTranslate2) for maximum speed and minimal memory footprint:
+LocalWhisper uses [`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) (CTranslate2) with optimized 8-bit quantization for maximum speed and minimal memory footprint:
 
 | Model | Download Size | RAM Usage | Speed | Recommended For |
 | :--- | :--- | :--- | :--- | :--- |
@@ -98,7 +117,7 @@ LocalWhisper uses [`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) 
 | **`medium.en`** | ~1.5 GB | ~2.6 GB | 🎯 (~2.8s) | Complex dictation & studio-level accuracy |
 | **`large-v3-turbo`** | ~1.6 GB | ~2.8 GB | 🌐 (~1.8s) | Multilingual transcription champion |
 
-*Models are saved in `models/whisper/` and load entirely from disk.*
+*Models are downloaded once to your local user application directory and run 100% offline.*
 
 ---
 
@@ -106,14 +125,17 @@ LocalWhisper uses [`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) 
 
 ```
 localwhisper/
+├── .github/workflows/
+│   └── build-and-release.yml# Multi-platform CI/CD for Windows & macOS builds
 ├── app.py                   # Master app coordinator & pywebview native bridge
-├── config.py                # Core configuration & defaults
+├── config.py                # Cross-platform configuration & defaults
+├── localwhisper.spec        # Standalone PyInstaller build specification
 ├── build_macos_app.py       # Compiles self-contained macOS .app bundle
 ├── launcher.m               # Native Mach-O launcher with permission pre-warming
 ├── entitlements.plist       # macOS hardened runtime entitlements
-├── requirements.txt         # Production dependencies
+├── requirements.txt         # Production dependencies with platform markers
 ├── run.sh                   # macOS/Linux launcher script
-├── run.bat                  # Windows launcher script
+├── run.bat                  # Windows launcher & auto-setup script
 ├── settings.example.json    # Default settings template
 ├── assets/
 │   └── logo.png             # Official Mint Green brand emblem
@@ -123,7 +145,7 @@ localwhisper/
 │   ├── live_streamer.py     # Real-time incremental delta typing engine
 │   ├── hands_free.py        # Continuous hands-free VAD dictation engine
 │   ├── llama_formatter.py   # Smart Flow punctuation & filler cleaner
-│   ├── injector.py          # Quartz / CGEvent active cursor text injector
+│   ├── injector.py          # Native cursor text injector (Quartz on Mac, user32 on Windows)
 │   ├── hotkey_manager.py    # Cross-platform global hotkey listener
 │   ├── settings_manager.py  # Persistent preferences & model discovery
 │   └── permissions.py       # System permission auditing
@@ -150,13 +172,13 @@ Run the test suite headlessly from the repository root:
 
 ```bash
 # Verify all components
-.venv/bin/python tests/test_system.py
+python tests/test_system.py
 
 # Verify zero-duplicate live streaming
-.venv/bin/python tests/test_no_duplicates.py
+python tests/test_no_duplicates.py
 
 # Run complete 8-step end-to-end system audit
-.venv/bin/python tests/verify_end_to_end.py
+python tests/verify_end_to_end.py
 ```
 
 ---

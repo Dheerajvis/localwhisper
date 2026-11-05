@@ -27,6 +27,8 @@ class Transcriber:
         try:
             device = "cpu"
             compute_type = config.WHISPER_COMPUTE_TYPE
+            if device == "cpu" and compute_type == "float16":
+                compute_type = "int8"
             
             self.model = WhisperModel(
                 model_size_or_path=self.model_size,

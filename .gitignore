@@ -33,6 +33,7 @@ MANIFEST
 .build_tmp/
 LocalWhisper.app/
 LocalWhisperLauncher
+*.zip
 
 # Operating System Files
 .DS_Store

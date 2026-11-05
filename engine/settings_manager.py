@@ -8,7 +8,7 @@ from typing import Dict, Any, List, Optional
 import config
 
 # Path to persistent settings
-SETTINGS_FILE = config.BASE_DIR / "settings.json"
+SETTINGS_FILE = config.DATA_DIR / "settings.json"
 
 DEFAULT_SETTINGS: Dict[str, Any] = {
     "active_model": config.DEFAULT_WHISPER_MODEL,

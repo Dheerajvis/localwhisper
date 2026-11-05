@@ -14,6 +14,7 @@ class TextInjector:
     def __init__(self):
         self.last_target_app = None
         self.last_target_app_name = None
+        self.last_target_hwnd = None
         self._last_typed_time = 0.0
         self._last_typed_text = ""
         self._start_app_tracker()
@@ -25,27 +26,45 @@ class TextInjector:
 
     def _start_app_tracker(self):
         """Continuously monitors frontmost application in background every 50ms."""
-        if not config.IS_MACOS:
-            return
+        if config.IS_MACOS:
+            def track_mac():
+                from AppKit import NSWorkspace
+                ws = NSWorkspace.sharedWorkspace()
+                while True:
+                    try:
+                        app = ws.frontmostApplication()
+                        if app:
+                            bundle = (app.bundleIdentifier() or "").lower()
+                            name = (app.localizedName() or "").lower()
+                            if "localwhisper" not in bundle and "python" not in bundle and "localwhisper" not in name:
+                                self.last_target_app = app
+                                self.last_target_app_name = app.localizedName()
+                    except Exception:
+                        pass
+                    time.sleep(0.05)
 
-        def track():
-            from AppKit import NSWorkspace
-            ws = NSWorkspace.sharedWorkspace()
-            while True:
-                try:
-                    app = ws.frontmostApplication()
-                    if app:
-                        bundle = (app.bundleIdentifier() or "").lower()
-                        name = (app.localizedName() or "").lower()
-                        if "localwhisper" not in bundle and "python" not in bundle and "localwhisper" not in name:
-                            self.last_target_app = app
-                            self.last_target_app_name = app.localizedName()
-                except Exception:
-                    pass
-                time.sleep(0.05)
+            tracker_thread = threading.Thread(target=track_mac, daemon=True)
+            tracker_thread.start()
 
-        tracker_thread = threading.Thread(target=track, daemon=True)
-        tracker_thread.start()
+        elif config.IS_WINDOWS:
+            def track_win():
+                import ctypes
+                user32 = ctypes.windll.user32
+                my_pid = os.getpid()
+                while True:
+                    try:
+                        hwnd = user32.GetForegroundWindow()
+                        if hwnd:
+                            pid = ctypes.c_ulong()
+                            user32.GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
+                            if pid.value != my_pid:
+                                self.last_target_hwnd = hwnd
+                    except Exception:
+                        pass
+                    time.sleep(0.05)
+
+            tracker_thread = threading.Thread(target=track_win, daemon=True)
+            tracker_thread.start()
 
     def capture_target_app(self):
         """Explicitly capture current active application."""
@@ -59,6 +78,18 @@ class TextInjector:
                     if "localwhisper" not in bundle and "python" not in bundle and "localwhisper" not in name:
                         self.last_target_app = app
                         self.last_target_app_name = app.localizedName()
+            except Exception:
+                pass
+        elif config.IS_WINDOWS:
+            try:
+                import ctypes
+                user32 = ctypes.windll.user32
+                hwnd = user32.GetForegroundWindow()
+                if hwnd:
+                    pid = ctypes.c_ulong()
+                    user32.GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
+                    if pid.value != os.getpid():
+                        self.last_target_hwnd = hwnd
             except Exception:
                 pass
 
@@ -90,7 +121,7 @@ class TextInjector:
 
     @staticmethod
     def open_accessibility_settings():
-        """Opens macOS System Settings directly to Privacy & Security -> Accessibility."""
+        """Opens macOS System Settings directly to Privacy & Security -> Accessibility, or Windows Settings."""
         if config.IS_MACOS:
             import subprocess
             try:
@@ -100,6 +131,12 @@ class TextInjector:
                 ])
             except Exception as e:
                 print(f"[TextInjector] Could not open System Settings: {e}", flush=True)
+        elif config.IS_WINDOWS:
+            import os
+            try:
+                os.system("start ms-settings:privacy-microphone")
+            except Exception as e:
+                print(f"[TextInjector] Could not open Windows Settings: {e}", flush=True)
 
     def inject_text(self, text: str, auto_paste: bool = config.AUTO_PASTE_ENABLED) -> tuple:
         """
@@ -227,8 +264,16 @@ class TextInjector:
             return False, "event_error"
 
     def _paste_windows(self) -> tuple:
-        """Simulates Ctrl+V on Windows."""
+        """Simulates Ctrl+V on Windows into the active target application."""
         try:
+            if self.last_target_hwnd:
+                import ctypes
+                try:
+                    ctypes.windll.user32.SetForegroundWindow(self.last_target_hwnd)
+                    time.sleep(0.04)
+                except Exception:
+                    pass
+
             from pynput.keyboard import Controller, Key
             kb = Controller()
             with kb.pressed(Key.ctrl):
@@ -326,8 +371,16 @@ class TextInjector:
             return False, "event_error"
 
     def _type_windows(self, text: str) -> tuple:
-        """Types string on Windows via pynput."""
+        """Types string on Windows via pynput into target application."""
         try:
+            if self.last_target_hwnd:
+                import ctypes
+                try:
+                    ctypes.windll.user32.SetForegroundWindow(self.last_target_hwnd)
+                    time.sleep(0.04)
+                except Exception:
+                    pass
+
             from pynput.keyboard import Controller
             kb = Controller()
             kb.type(text)

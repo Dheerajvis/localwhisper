@@ -41,6 +41,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const isMac = (navigator.userAgent || navigator.platform || '').toUpperCase().indexOf('MAC') >= 0;
+  if (!isMac) {
+    pageHeaders.models.sub = 'Select which Whisper AI model processes speech on your PC.';
+    const kbdGroup = document.querySelector('.kree8-kbd-group');
+    if (kbdGroup) {
+      kbdGroup.innerHTML = '<kbd class="kree8-kbd">Ctrl</kbd><kbd class="kree8-kbd">Shift</kbd><kbd class="kree8-kbd">Space</kbd>';
+    }
+    const permHeader = document.querySelector('#pane-about .card-headline');
+    if (permHeader) {
+      permHeader.textContent = 'System Status & Integration';
+    }
+    const permSubhead = document.querySelector('#pane-about .card-subhead');
+    if (permSubhead) {
+      permSubhead.textContent = 'LocalWhisper is configured for Windows offline operation.';
+    }
+    const openPrefs = document.getElementById('openSysPrefsBtn');
+    if (openPrefs) {
+      openPrefs.textContent = 'Open Windows Settings ↗';
+    }
+  }
+
   // Tab Switching
   navItems.forEach(item => {
     item.addEventListener('click', () => {

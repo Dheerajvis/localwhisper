@@ -47,7 +47,7 @@ class HotkeyManager:
         else:
             hotkey_patterns = {
                 '<ctrl>+<shift>+<space>': self._handle_hotkey_trigger,
-                '<alt>+<space>': self._handle_hotkey_trigger,
+                '<ctrl>+<alt>+<space>': self._handle_hotkey_trigger,
             }
 
         try:
