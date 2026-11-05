@@ -45,7 +45,7 @@ Skip setup and download the pre-compiled builds directly from [**GitHub Releases
   - Intelligently converts spoken punctuation (*"comma", "new line", "bullet point"*).
   - Specialized formatting modes: **Smart Dictation**, **Developer/Code**, **Email**, and **Raw**.
 - ⌨️ **Global Hotkey & Direct Active Cursor Injection**:
-  - Press `Cmd + Shift + Space` (macOS) or `Ctrl + Shift + Space` (Windows) to dictate anywhere (Slack, VS Code, Browser, Word, Notepad, Terminal).
+  - Press **Right Option** (`Right ⌥` on macOS) or **Right Alt** (`AltGr` on Windows) to dictate anywhere (Slack, VS Code, Browser, Word, Notepad, Terminal). Also supports `Cmd + Shift + Space` / `Ctrl + Shift + Space`.
   - Supports both **Toggle** and **Push-to-Talk** modes.
 
 ---
@@ -62,10 +62,10 @@ LocalWhisper is fully optimized for Windows 10 and Windows 11 with native active
    ```
 2. Double-click `run.bat` (or run `run.bat` in Command Prompt / PowerShell).
    - `run.bat` automatically checks Python 3.9+, creates an isolated `.venv`, installs requirements, and launches LocalWhisper.
-3. Start dictating with `Ctrl + Shift + Space` or `Ctrl + Alt + Space`.
+3. Start dictating with **Right Alt** (or `Ctrl + Shift + Space`).
 
 ### Windows Tips & Settings:
-- **Default Hotkey**: `Ctrl + Shift + Space` (toggle recording) or `Ctrl + Alt + Space`.
+- **Default Hotkey**: **Right Alt** (toggle recording) or `Ctrl + Shift + Space`.
 - **Text Typing**: Automatically injects text directly into the focused window (Word, Notepad, Browser, Discord, VS Code, Slack).
 - **Microphone Access**: If prompted, ensure **Settings > Privacy & security > Microphone** is toggled ON for desktop apps.
 - **Acceleration**: Runs with 8-bit quantization (`int8`) on CPU out of the box for instantaneous inference with low RAM.

@@ -54,7 +54,7 @@ if not exist ".venv\Scripts\python.exe" (
 
 REM 3. Launch the application
 echo [LocalWhisper] Launching LocalWhisper...
-echo [LocalWhisper] Global Hotkey: Ctrl + Shift + Space
+echo [LocalWhisper] Global Hotkey: Right Alt (or Ctrl + Shift + Space)
 .venv\Scripts\python.exe app.py
 if %ERRORLEVEL% neq 0 (
     echo.

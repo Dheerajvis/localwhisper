@@ -140,43 +140,54 @@ class LocalWhisperApp:
             except Exception:
                 pass
 
-    def toggle_recording(self):
-        """Toggles recording and types transcribed text directly into the active cursor in real-time."""
+    def start_recording(self):
+        """Starts real-time live recording and typing."""
         with self._lock:
-            if self._is_processing:
-                print("[LocalWhisperApp] Busy processing audio. Ignoring toggle.", flush=True)
+            if self._is_processing or self.recorder.is_recording:
                 return
 
-            if not self.recorder.is_recording:
-                print("[LocalWhisperApp] Starting new recording session with real-time live typing...", flush=True)
-                self.injector.capture_target_app()
-                self.injector.reset()
-                self.live_streamer.reset()
-                
-                # Temporarily pause hands-free background listener so there is no microphone contention
-                if self.hands_free and self.hands_free.is_running:
-                    self.hands_free.is_muted = True
+            print("[LocalWhisperApp] Starting new recording session with real-time live typing...", flush=True)
+            self.injector.capture_target_app()
+            self.injector.reset()
+            self.live_streamer.reset()
+            
+            # Temporarily pause hands-free background listener so there is no microphone contention
+            if self.hands_free and self.hands_free.is_running:
+                self.hands_free.is_muted = True
 
-                # Check for customized microphone device
-                dev_id = self.settings_mgr.settings.get("microphone_device_id")
-                success = self.recorder.start(device_id=dev_id)
-                if success:
-                    self.live_streamer.start()
-                    if self.window:
-                        self.window.evaluate_js("window.updateState('listening');")
-                    threading.Thread(target=self._meter_audio_loop, daemon=True).start()
-                else:
-                    print("[LocalWhisperApp] Failed to start audio recorder on any candidate device.", flush=True)
-                    if self.window:
-                        self.window.evaluate_js("window.updateState('idle');")
-            else:
-                print("[LocalWhisperApp] Stopping recording session and finalizing stream...", flush=True)
-                self._is_processing = True
+            # Check for customized microphone device
+            dev_id = self.settings_mgr.settings.get("microphone_device_id")
+            success = self.recorder.start(device_id=dev_id)
+            if success:
+                self.live_streamer.start()
                 if self.window:
-                    self.window.evaluate_js("window.updateState('transcribing');")
-                
-                # Asynchronously stop the recorder and process the audio in a worker thread
-                threading.Thread(target=self._stop_and_process, daemon=True).start()
+                    self.window.evaluate_js("window.updateState('listening');")
+                threading.Thread(target=self._meter_audio_loop, daemon=True).start()
+            else:
+                print("[LocalWhisperApp] Failed to start audio recorder on any candidate device.", flush=True)
+                if self.window:
+                    self.window.evaluate_js("window.updateState('idle');")
+
+    def stop_recording(self):
+        """Stops audio recording and finalizes transcribed text."""
+        with self._lock:
+            if not self.recorder.is_recording or self._is_processing:
+                return
+
+            print("[LocalWhisperApp] Stopping recording session and finalizing stream...", flush=True)
+            self._is_processing = True
+            if self.window:
+                self.window.evaluate_js("window.updateState('transcribing');")
+            
+            # Asynchronously stop the recorder and process the audio in a worker thread
+            threading.Thread(target=self._stop_and_process, daemon=True).start()
+
+    def toggle_recording(self):
+        """Toggles recording and types transcribed text directly into the active cursor in real-time."""
+        if self.recorder.is_recording:
+            self.stop_recording()
+        else:
+            self.start_recording()
 
     def _stop_and_process(self):
         """Worker thread: Stops audio recording, finalizes live streaming, and updates UI."""
@@ -395,8 +406,8 @@ class LocalWhisperApp:
             saved_mode = self.settings_mgr.settings.get("hotkey_mode", config.HOTKEY_MODE)
             self.hotkey_mgr = HotkeyManager(
                 on_toggle=self.toggle_recording,
-                on_press_down=self.toggle_recording,
-                on_release=self.toggle_recording,
+                on_press_down=self.start_recording,
+                on_release=self.stop_recording,
                 mode=saved_mode
             )
             self.hotkey_mgr.start()

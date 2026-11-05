@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const hintKeys = document.getElementById('hintKeys');
 
   const isMac = (navigator.userAgent || navigator.platform || '').toUpperCase().indexOf('MAC') >= 0;
-  const hkDisplay = isMac ? '⌘⇧Space' : 'Ctrl+Shift+Space';
-  const defaultKeys = isMac ? ['⌘', '⇧', 'Space'] : ['Ctrl', 'Shift', 'Space'];
+  const hkDisplay = isMac ? 'Right ⌥' : 'Right Alt';
+  const defaultKeys = isMac ? ['Right ⌥'] : ['Right Alt'];
 
   function renderKeys(keys) {
     return keys.map(k => `<kbd class="hint-kbd">${k}</kbd>`).join('');

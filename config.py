@@ -48,9 +48,8 @@ LLAMA_MODEL_PATH = str(MODELS_DIR / "llama-3.2-1b-instruct.Q4_K_M.gguf")
 HOTKEY_MODE = "toggle"
 
 # Key combo:
-# On macOS: Cmd+Shift+Space or Ctrl+Alt+Space
-# On Windows: Ctrl+Shift+Space or Ctrl+Alt+Space
-DEFAULT_HOTKEY_DISPLAY = "Cmd + Shift + Space" if IS_MACOS else "Ctrl + Shift + Space"
+# Primary shortcut: Right Option (Right ⌥ on macOS, Right Alt on Windows)
+DEFAULT_HOTKEY_DISPLAY = "Right ⌥" if IS_MACOS else "Right Alt"
 
 # Auto-Paste into active window
 AUTO_PASTE_ENABLED = True

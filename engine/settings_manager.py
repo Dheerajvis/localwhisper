@@ -20,7 +20,7 @@ DEFAULT_SETTINGS: Dict[str, Any] = {
     "format_punctuation": True,
     "auto_capitalize": True,
     "microphone_device_id": None,
-    "hotkey_combo": "cmd+shift+space" if config.IS_MACOS else "ctrl+shift+space",
+    "hotkey_combo": "Right ⌥" if config.IS_MACOS else "Right Alt",
     "hotkey_mode": "toggle",
     "silence_threshold": 0.0028
 }

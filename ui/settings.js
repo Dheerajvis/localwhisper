@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     pageHeaders.models.sub = 'Select which Whisper AI model processes speech on your PC.';
     const kbdGroup = document.querySelector('.lw-kbd-group');
     if (kbdGroup) {
-      kbdGroup.innerHTML = '<kbd class="lw-kbd">Ctrl</kbd><kbd class="lw-kbd">Shift</kbd><kbd class="lw-kbd">Space</kbd>';
+      kbdGroup.innerHTML = '<kbd class="lw-kbd">Right Alt</kbd>';
     }
     const permHeader = document.querySelector('#pane-about .card-headline');
     if (permHeader) {

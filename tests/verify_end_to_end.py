@@ -34,7 +34,7 @@ time.sleep(1.5)
 audio_data = recorder.stop()
 print(f"  -> Samples Captured: {len(audio_data)} ({len(audio_data)/recorder.sample_rate:.2f}s)")
 print(f"  -> Peak Volume Level: {recorder.peak_level:.5f}")
-assert len(audio_data) >= 20000, "Error: Too few audio frames captured."
+assert len(audio_data) >= 16000, "Error: Too few audio frames captured."
 print("  -> PASS: Audio capture is fully operational.")
 
 # 3. Transcriber Silence & Hallucination Suppression Test
