@@ -1,0 +1,3 @@
+"""
+LocalWhisper Engine Module
+"""

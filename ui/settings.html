@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalWhisper Dashboard & Settings</title>
+  <link rel="stylesheet" href="settings.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=SF+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="kree8-theme">
+  <div class="kree8-canvas">
+    <!-- Kree8 Sidebar Navigation -->
+    <aside class="kree8-sidebar">
+      <div class="sidebar-brand">
+        <div class="squircle-icon brand-icon sm">
+          <img src="logo.png" alt="LocalWhisper" class="brand-logo-img">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">LocalWhisper</span>
+          <span class="brand-sub">On-Device Voice AI</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="sidebar-nav-heading">CONFIGURATION</span>
+        <button class="sidebar-nav-btn active" data-tab="models">
+          <div class="nav-icon-box">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          </div>
+          <span class="nav-btn-label">AI Models & Storage</span>
+          <span class="pill-tag tag-neutral micro" id="installedBadge">1</span>
+        </button>
+
+        <button class="sidebar-nav-btn" data-tab="flow">
+          <div class="nav-icon-box">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <span class="nav-btn-label">Dictation Flow</span>
+        </button>
+
+        <button class="sidebar-nav-btn" data-tab="audio">
+          <div class="nav-icon-box">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+          </div>
+          <span class="nav-btn-label">Audio & Microphone</span>
+        </button>
+
+        <button class="sidebar-nav-btn" data-tab="hotkeys">
+          <div class="nav-icon-box">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.001M10 8h.001M14 8h.001M18 8h.001M8 12h8M6 16h.001M18 16h.001"/></svg>
+          </div>
+          <span class="nav-btn-label">Global Shortcuts</span>
+        </button>
+
+        <span class="sidebar-nav-heading" style="margin-top: 14px;">DEVICE & ENGINE</span>
+        <button class="sidebar-nav-btn" data-tab="about">
+          <div class="nav-icon-box">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
+          <span class="nav-btn-label">System & Privacy</span>
+          <span class="status-pulse-dot" id="permDot"></span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Mini Storage Metric Card -->
+      <div class="sidebar-footer">
+        <div class="storage-mini-card">
+          <div class="storage-mini-header">
+            <span class="eyebrow-text">SSD CACHE</span>
+            <span class="storage-val-bold font-mono" id="miniStorageVal">281 MB</span>
+          </div>
+          <div class="pill-progress-track">
+            <div class="pill-progress-fill" id="miniStorageFill" style="width: 20%;"></div>
+          </div>
+          <div class="storage-mini-meta">
+            <span class="pill-tag tag-mint micro">Zero Cloud</span>
+            <span class="storage-caption">Private Storage</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Stage -->
+    <main class="kree8-stage">
+      <!-- Stage Header -->
+      <header class="stage-header">
+        <div class="stage-header-title-group">
+          <span class="eyebrow-text" id="pageEyebrow">CORE ARCHITECTURE</span>
+          <h1 class="stage-title" id="pageTitle">AI Models & Storage</h1>
+          <p class="stage-subtitle" id="pageSubtitle">Select which Whisper AI model processes speech on your Mac.</p>
+        </div>
+        <div class="stage-header-actions">
+          <button class="pill-btn-secondary" id="revealFinderBtn">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Open in Finder</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- TAB 1: AI Models & Storage -->
+      <section class="tab-pane active" id="pane-models">
+        <!-- Overview Stats Strip -->
+        <div class="kree8-card models-overview-card">
+          <div class="overview-metric-tile">
+            <div class="squircle-icon sm bg-mint">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="overview-metric-info">
+              <span class="eyebrow-text">ACTIVE MODEL</span>
+              <span class="overview-metric-bold text-mint" id="activeModelName">Whisper Base (English)</span>
+            </div>
+          </div>
+
+          <div class="metric-divider-vert"></div>
+
+          <div class="overview-metric-tile">
+            <div class="squircle-icon sm bg-cyan">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <div class="overview-metric-info">
+              <span class="eyebrow-text">SSD CACHE</span>
+              <span class="overview-metric-bold font-mono" id="totalDiskSize">281.8 MB</span>
+            </div>
+          </div>
+
+          <div class="metric-divider-vert"></div>
+
+          <div class="overview-metric-tile">
+            <div class="squircle-icon sm bg-mint">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="overview-metric-info">
+              <span class="eyebrow-text">CACHED WEIGHTS</span>
+              <span class="overview-metric-bold" id="modelCountSub">1 of 5 Models</span>
+            </div>
+          </div>
+          <span id="modelsPathCode" style="display:none;"></span>
+        </div>
+
+        <!-- Section Title -->
+        <div class="section-title-row">
+          <span class="eyebrow-text">AVAILABLE WEIGHTS</span>
+          <span class="section-hint">Select a model matching your preferred speed and accuracy</span>
+        </div>
+
+        <!-- Models Catalog List -->
+        <div class="models-catalog-list" id="modelsGrid">
+          <!-- Dynamically populated via settings.js -->
+        </div>
+      </section>
+
+      <!-- TAB 2: Smart Flow & Modes -->
+      <section class="tab-pane" id="pane-flow">
+        <!-- Transcription Processing Mode -->
+        <div class="kree8-card">
+          <div class="card-header-row">
+            <div>
+              <span class="eyebrow-text">PURIFICATION ENGINE</span>
+              <h2 class="card-headline">Transcription Modes</h2>
+              <p class="card-subhead">Choose how spoken words are transformed and formatted in real-time.</p>
+            </div>
+          </div>
+
+          <div class="modes-grid-container">
+            <div class="kree8-subcard mode-card active" data-flow="smart">
+              <div class="mode-card-top">
+                <div class="squircle-icon sm bg-mint">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <div class="mode-card-title-col">
+                  <span class="mode-title">Smart Flow</span>
+                  <span class="pill-tag tag-mint micro">Recommended</span>
+                </div>
+              </div>
+              <p class="mode-body">Automatically removes filler words ("um", "uh", "you know"), inserts spoken punctuation, and formats capitalization.</p>
+              <div class="mode-meta-bar">
+                <span class="mode-meta-text">Sub-20ms • Perfect for everyday dictation</span>
+              </div>
+            </div>
+
+            <div class="kree8-subcard mode-card" data-flow="developer">
+              <div class="mode-card-top">
+                <div class="squircle-icon sm bg-cyan">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <div class="mode-card-title-col">
+                  <span class="mode-title">Developer</span>
+                  <span class="pill-tag tag-cyan micro">Code</span>
+                </div>
+              </div>
+              <p class="mode-body">Preserves code syntax, camelCase, snake_case, brackets, programming identifiers, and git commands.</p>
+              <div class="mode-meta-bar">
+                <span class="mode-meta-text">Syntax Aware • Ideal for IDEs & Terminal</span>
+              </div>
+            </div>
+
+            <div class="kree8-subcard mode-card" data-flow="email">
+              <div class="mode-card-top">
+                <div class="squircle-icon sm bg-olive">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="mode-card-title-col">
+                  <span class="mode-title">Email Format</span>
+                  <span class="pill-tag tag-olive micro">Formal</span>
+                </div>
+              </div>
+              <p class="mode-body">Structures spoken thoughts into professional messages with greetings, clean bulleted lists, and signoffs.</p>
+              <div class="mode-meta-bar">
+                <span class="mode-meta-text">Structured • Ideal for Mail & Slack</span>
+              </div>
+            </div>
+
+            <div class="kree8-subcard mode-card" data-flow="raw">
+              <div class="mode-card-top">
+                <div class="squircle-icon sm bg-coral">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <div class="mode-card-title-col">
+                  <span class="mode-title">Raw Dictation</span>
+                  <span class="pill-tag tag-coral micro">Verbatim</span>
+                </div>
+              </div>
+              <p class="mode-body">Exact literal transcription without any filler removal or grammatical altering. Ideal for transcription purists.</p>
+              <div class="mode-meta-bar">
+                <span class="mode-meta-text">Literal • Zero post-processing filters</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formatting & Automation Rules -->
+        <div class="kree8-card" style="margin-top: 16px;">
+          <div class="card-header-row">
+            <div>
+              <span class="eyebrow-text">POST-PROCESSING RULES</span>
+              <h3 class="card-headline">Typing & Formatting Toggles</h3>
+            </div>
+          </div>
+
+          <div class="settings-rows-group">
+            <div class="kree8-setting-row">
+              <div class="setting-text-col">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="setting-label">Continuous Hands-Free Dictation</span>
+                  <span class="pill-tag tag-mint micro">Option B</span>
+                </div>
+                <span class="setting-caption">Automatically types spoken words wherever you place your cursor without pressing any keys.</span>
+              </div>
+              <label class="kree8-toggle">
+                <input type="checkbox" id="toggleHandsFree" checked>
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+
+            <div class="kree8-divider"></div>
+
+            <div class="kree8-setting-row">
+              <div class="setting-text-col">
+                <span class="setting-label">Auto-Paste at Active Cursor</span>
+                <span class="setting-caption">Fires ⌘V directly into your active window immediately upon finishing dictation.</span>
+              </div>
+              <label class="kree8-toggle">
+                <input type="checkbox" id="toggleAutoPaste" checked>
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+
+            <div class="kree8-divider"></div>
+
+            <div class="kree8-setting-row">
+              <div class="setting-text-col">
+                <span class="setting-label">Vocal Filler Purifier</span>
+                <span class="setting-caption">Automatically strips disfluencies ("um", "uh", "you know", "like") from speech.</span>
+              </div>
+              <label class="kree8-toggle">
+                <input type="checkbox" id="toggleRemoveFillers" checked>
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+
+            <div class="kree8-divider"></div>
+
+            <div class="kree8-setting-row">
+              <div class="setting-text-col">
+                <span class="setting-label">Spoken Punctuation Parser</span>
+                <span class="setting-caption">Converts spoken command words ("period", "comma", "question mark", "new line") into punctuation.</span>
+              </div>
+              <label class="kree8-toggle">
+                <input type="checkbox" id="togglePunctuation" checked>
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+
+            <div class="kree8-divider"></div>
+
+            <div class="kree8-setting-row">
+              <div class="setting-text-col">
+                <span class="setting-label">Smart Capitalization</span>
+                <span class="setting-caption">Capitalizes sentence beginnings, proper nouns, and technical acronyms (AI, API, Mac, UI).</span>
+              </div>
+              <label class="kree8-toggle">
+                <input type="checkbox" id="toggleCapitalize" checked>
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: Audio & Microphone -->
+      <section class="tab-pane" id="pane-audio">
+        <!-- Input Device Card -->
+        <div class="kree8-card">
+          <div class="card-header-row">
+            <div>
+              <span class="eyebrow-text">CORE AUDIO HARDWARE</span>
+              <h2 class="card-headline">Microphone Input Device</h2>
+              <p class="card-subhead">Choose the physical audio input used for 16kHz speech recording.</p>
+            </div>
+            <span class="pill-tag tag-mint">16kHz PortAudio</span>
+          </div>
+
+          <div class="device-select-container">
+            <select class="kree8-select" id="deviceSelect">
+              <option value="">Querying available microphones...</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Live Signal Meter -->
+        <div class="kree8-card" style="margin-top: 16px;">
+          <div class="card-header-row">
+            <div>
+              <span class="eyebrow-text">SIGNAL CALIBRATION</span>
+              <h3 class="card-headline">Microphone Level Test</h3>
+              <p class="card-subhead">Speak into your mic to confirm input sensitivity before dictating.</p>
+            </div>
+            <button class="pill-btn-secondary" id="testMicBtn">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Test Mic (2s)</span>
+            </button>
+          </div>
+
+          <div class="vu-meter-row">
+            <div class="vu-meter-track">
+              <div class="vu-meter-fill" id="vuMeterFill" style="width: 0%;"></div>
+            </div>
+            <span class="vu-meter-readout font-mono" id="vuMeterVal">0.0000 RMS</span>
+          </div>
+        </div>
+
+        <!-- Silence & Hallucination Threshold -->
+        <div class="kree8-card" style="margin-top: 16px;">
+          <div class="card-header-row">
+            <div>
+              <span class="eyebrow-text">NOISE SUPPRESSION</span>
+              <h3 class="card-headline">Silence Detection Threshold</h3>
+              <p class="card-subhead">Audio energy below this level is filtered as room noise to prevent hallucinations.</p>
+            </div>
+            <span class="pill-tag tag-cyan font-mono" id="silenceVal">0.0028</span>
+          </div>
+
+          <div class="slider-wrapper">
+            <input type="range" class="kree8-slider" id="silenceSlider" min="0.0010" max="0.0090" step="0.0002" value="0.0028">
+            <div class="slider-labels-row">
+              <span>Sensitive (Quiet room / whisper)</span>
+              <span>Balanced (Recommended)</span>
+              <span>Strict (Noisy background)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: Global Shortcuts -->
+      <section class="tab-pane" id="pane-hotkeys">
+        <div class="kree8-card">
+          <div class="card-header-row">
+            <div>
+              <span class="eyebrow-text">SYSTEM INTEGRATION</span>
+              <h2 class="card-headline">Global Dictation Shortcut</h2>
+              <p class="card-subhead">Instantly start or stop transcription from any macOS application.</p>
+            </div>
+            <div class="kree8-kbd-group">
+              <kbd class="kree8-kbd">⌘</kbd>
+              <kbd class="kree8-kbd">⇧</kbd>
+              <kbd class="kree8-kbd">Space</kbd>
+            </div>
+          </div>
+
+          <div class="kree8-divider" style="margin: 20px 0;"></div>
+
+          <div class="card-header-row">
+            <div>
+              <span class="eyebrow-text">TRIGGER BEHAVIOR</span>
+              <h3 class="card-headline">Activation Mode</h3>
+              <p class="card-subhead">Select your preferred interaction model.</p>
+            </div>
+            <div class="kree8-segmented-pill">
+              <button class="seg-pill-btn active" data-hk-mode="toggle">Tap to Toggle</button>
+              <button class="seg-pill-btn" data-hk-mode="push_to_talk">Push-to-Talk (Hold)</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: System & Privacy -->
+      <section class="tab-pane" id="pane-about">
+        <!-- Permissions Card -->
+        <div class="kree8-card">
+          <div class="card-header-row">
+            <div>
+              <span class="eyebrow-text">SYSTEM SECURITY</span>
+              <h2 class="card-headline">macOS Permissions Status</h2>
+              <p class="card-subhead">LocalWhisper requires local microphone and accessibility access.</p>
+            </div>
+          </div>
+
+          <div class="permissions-dual-grid">
+            <div class="kree8-subcard perm-subcard">
+              <div class="perm-subcard-header">
+                <div class="squircle-icon sm bg-mint">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+                </div>
+                <span class="pill-tag tag-mint micro" id="micStatusBadge">Authorized ✓</span>
+              </div>
+              <h4 class="perm-title">Microphone Access</h4>
+              <p class="perm-body">Captures audio for local in-memory transcription. Audio is never saved to disk.</p>
+            </div>
+
+            <div class="kree8-subcard perm-subcard">
+              <div class="perm-subcard-header">
+                <div class="squircle-icon sm bg-mint">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <span class="pill-tag tag-mint micro" id="axStatusBadge">Trusted ✓</span>
+              </div>
+              <h4 class="perm-title">Accessibility (Auto-Type)</h4>
+              <p class="perm-body">Synthesizes ⌘V keystrokes directly into your focused application at the cursor.</p>
+              <button class="pill-btn-secondary micro" id="openSysPrefsBtn" style="margin-top: 8px;">Open System Settings ↗</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 100% Offline Guarantee Banner -->
+        <div class="kree8-card manifesto-card" style="margin-top: 16px;">
+          <div class="manifesto-content">
+            <div class="squircle-icon lg bg-mint">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <span class="eyebrow-text">ZERO NETWORK POLICY</span>
+              <h3 class="manifesto-title">100% Offline Privacy Guarantee</h3>
+              <p class="manifesto-text">Your voice and transcripts never leave this device. Speech is processed locally using CTranslate2 and Apple Silicon acceleration. Zero cloud telemetry and zero internet connection required.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Engine Specifications -->
+        <div class="kree8-card" style="margin-top: 16px;">
+          <div class="card-header-row">
+            <div>
+              <span class="eyebrow-text">SPECIFICATIONS</span>
+              <h3 class="card-headline">System Architecture</h3>
+            </div>
+            <span class="pill-tag tag-mint">v1.0.0 • Apple Silicon ARM64</span>
+          </div>
+
+          <div class="specs-grid">
+            <div class="spec-tile">
+              <span class="spec-prop">AI Model Engine</span>
+              <span class="spec-val">faster-whisper (CTranslate2 Int8)</span>
+            </div>
+            <div class="spec-tile">
+              <span class="spec-prop">Audio Capture</span>
+              <span class="spec-val">16kHz PortAudio Mono Stream</span>
+            </div>
+            <div class="spec-tile">
+              <span class="spec-prop">Text Injection</span>
+              <span class="spec-val">Quartz CGEventPostToPid Direct Injection</span>
+            </div>
+            <div class="spec-tile">
+              <span class="spec-prop">Persistent Cache</span>
+              <span class="spec-val font-mono">~/models/whisper/</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

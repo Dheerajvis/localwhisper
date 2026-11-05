@@ -1,0 +1,14 @@
+{
+  "active_model": "base.en",
+  "active_mode": "smart",
+  "auto_paste": true,
+  "hands_free_mode": false,
+  "hands_free_muted": false,
+  "remove_fillers": true,
+  "format_punctuation": true,
+  "auto_capitalize": true,
+  "microphone_device_id": null,
+  "hotkey_combo": "cmd+shift+space",
+  "hotkey_mode": "toggle",
+  "silence_threshold": 0.0028
+}

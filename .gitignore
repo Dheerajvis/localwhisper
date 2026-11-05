@@ -1,0 +1,71 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Distribution / Packaging / macOS Apps
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.build_tmp/
+LocalWhisper.app/
+LocalWhisperLauncher
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE & Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Models (weights are downloaded on demand or from HuggingFace)
+models/whisper/*
+!models/whisper/.gitkeep
+models/*.gguf
+*.bin
+
+# User Settings (keep settings.example.json tracked)
+settings.json
+!settings.example.json
+
+# Audio recordings & temporary audio files
+*.wav
+!tests/fixtures/*.wav
+*.mp3
+*.flac
+*.m4a
+
+# Logs
+*.log

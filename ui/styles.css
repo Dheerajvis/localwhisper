@@ -1,0 +1,334 @@
+/* ==========================================================================
+   LocalWhisper - Minimal Floating Pill (Static & Active States)
+   Pixel-perfect match to user design reference
+   ========================================================================== */
+
+:root {
+  --font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+  --glass-bg: rgba(22, 22, 26, 0.86);
+  --glass-active-bg: rgba(18, 18, 22, 0.94);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-active-border: rgba(255, 255, 255, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  font-family: var(--font-family);
+  background: transparent;
+  color: #FFFFFF;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Outer Wrapper (centered in 360x100 transparent window) */
+.pill-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   The Minimal Capsule Pill
+   ========================================================================== */
+.minimal-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  width: 148px;
+  padding: 0 8px 0 14px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(36px) saturate(200%);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  border-radius: 9999px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    0 14px 36px rgba(0, 0, 0, 0.58),
+    0 2px 8px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.22),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  overflow: hidden;
+  transition: 
+    width 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.12s ease;
+  -webkit-app-region: no-drag;
+}
+
+.minimal-pill:hover {
+  background: rgba(26, 26, 32, 0.90);
+  border-color: rgba(255, 255, 255, 0.26);
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.65),
+    inset 0 1px 1px rgba(255, 255, 255, 0.28);
+}
+
+.minimal-pill:active {
+  transform: scale(0.98);
+}
+
+/* Active State: Expanded, Colorful Waveform, Audio Reactive */
+.minimal-pill.active,
+.minimal-pill.listening {
+  width: 238px;
+  background: var(--glass-active-bg);
+  border-color: var(--glass-active-border);
+  box-shadow: 
+    0 18px 46px rgba(0, 0, 0, 0.72),
+    0 0 24px rgba(255, 255, 255, 0.08),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.32),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   Left Element: 6-Dot Drag Grip (:::)
+   ========================================================================== */
+.drag-grip {
+  display: grid;
+  grid-template-columns: repeat(2, 3px);
+  grid-template-rows: repeat(3, 3px);
+  gap: 3.5px;
+  padding: 10px 4px;
+  cursor: grab;
+  -webkit-app-region: drag;
+  opacity: 0.40;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.drag-grip:hover {
+  opacity: 0.85;
+}
+
+.drag-grip:active {
+  cursor: grabbing;
+  opacity: 1;
+}
+
+.drag-grip .dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+}
+
+/* ==========================================================================
+   Center Element: Audio Waveform Box
+   ========================================================================== */
+.waveform-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  position: relative;
+  pointer-events: none; /* Pill wrapper handles clicks */
+}
+
+/* 1. Static State: Branded App Icon Logo with Ambient Mint Glow */
+.static-waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 32px;
+  width: 100%;
+}
+
+.static-glow {
+  position: absolute;
+  width: 58px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(107, 231, 167, 0.45) 0%, rgba(107, 231, 167, 0.15) 50%, rgba(107, 231, 167, 0) 75%);
+  filter: blur(8px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.static-logo-img {
+  position: relative;
+  height: 25px;
+  width: auto;
+  max-width: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 7px rgba(107, 231, 167, 0.55));
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.22s ease;
+  pointer-events: none;
+}
+
+.minimal-pill:hover .static-logo-img {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 12px rgba(107, 231, 167, 0.85));
+}
+
+.minimal-pill:hover .static-glow {
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+/* 2. Active Waveform: 12 Spectrum Gradient Bars */
+.active-waveform {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2px;
+  position: relative;
+  height: 32px;
+}
+
+.minimal-pill.active .static-waveform,
+.minimal-pill.listening .static-waveform {
+  display: none;
+}
+
+.minimal-pill.active .active-waveform,
+.minimal-pill.listening .active-waveform {
+  display: flex;
+}
+
+.spectrum-glow {
+  position: absolute;
+  width: 130px;
+  height: 28px;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.25) 0%, rgba(14, 165, 233, 0.18) 45%, rgba(0, 0, 0, 0) 75%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.spectrum-bar {
+  width: 3.5px;
+  height: var(--bh);
+  background: var(--c);
+  border-radius: 9999px;
+  box-shadow: 0 0 8px var(--c);
+  animation: spectrumDance 1.1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+  animation-delay: var(--d);
+  transform-origin: center;
+  transition: transform 0.08s ease-out;
+}
+
+@keyframes spectrumDance {
+  0% {
+    transform: scaleY(0.40);
+    opacity: 0.80;
+  }
+  50% {
+    transform: scaleY(1.30);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0.60);
+    opacity: 0.88;
+  }
+}
+
+/* ==========================================================================
+   Right Element: Circular Settings Button
+   ========================================================================== */
+.settings-circle-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-app-region: no-drag;
+}
+
+.settings-circle-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: rotate(30deg);
+}
+
+.settings-circle-btn:active {
+  transform: scale(0.92) rotate(45deg);
+}
+
+.settings-circle-btn svg {
+  display: block;
+}
+
+/* ==========================================================================
+   Mini Context Menu (Right Click)
+   ========================================================================== */
+.mini-context-menu {
+  position: absolute;
+  top: 68px;
+  right: 14px;
+  background: rgba(24, 24, 28, 0.92);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  padding: 6px;
+  min-width: 160px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1000;
+  -webkit-app-region: no-drag;
+}
+
+.mini-context-menu.open {
+  display: flex;
+}
+
+.context-item {
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.context-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.context-item.quit-item {
+  color: #F87171;
+}
+
+.context-item.quit-item:hover {
+  background: rgba(248, 113, 113, 0.18);
+  color: #FFAAAA;
+}
+
+.context-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.10);
+  margin: 4px 0;
+}
