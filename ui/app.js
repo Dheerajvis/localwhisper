@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const shortcutHint = document.getElementById('shortcutHint');
-  const hintLabel = document.getElementById('hintLabel');
   const hintKeys = document.getElementById('hintKeys');
 
   const isMac = (navigator.userAgent || navigator.platform || '').toUpperCase().indexOf('MAC') >= 0;
@@ -58,29 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
       pill.title = `Click to Stop Recording (${hkDisplay})`;
       if (shortcutHint) {
         shortcutHint.className = 'shortcut-hint active';
-        if (hintLabel) {
-          hintLabel.innerHTML = '<span class="hint-status-dot"></span> Listening';
-        }
-      }
-    } else if (state === 'transcribing' || state === 'formatting') {
-      pill.className = 'minimal-pill idle';
-      if (shortcutHint) {
-        shortcutHint.className = 'shortcut-hint';
-        if (hintLabel) {
-          hintLabel.textContent = 'Formatting...';
-        }
       }
     } else {
       pill.className = 'minimal-pill idle';
       pill.title = `Click to Record (${hkDisplay})`;
       if (shortcutHint) {
         shortcutHint.className = 'shortcut-hint';
-        if (hintLabel) {
-          hintLabel.textContent = 'Dictate';
-        }
-        if (hintKeys) {
-          hintKeys.innerHTML = renderKeys(defaultKeys);
-        }
       }
       // Reset spectrum bar inline transforms when idle
       spectrumBars.forEach(b => {
