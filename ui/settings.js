@@ -1,6 +1,6 @@
 /**
  * LocalWhisper Settings Controller
- * Aesthetics: Kree8 Studio (@letskree8) & Apple Human Interface Precision
+ * Aesthetics: Modern Obsidian & Mint & Apple Human Interface Precision
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const isMac = (navigator.userAgent || navigator.platform || '').toUpperCase().indexOf('MAC') >= 0;
   if (!isMac) {
     pageHeaders.models.sub = 'Select which Whisper AI model processes speech on your PC.';
-    const kbdGroup = document.querySelector('.kree8-kbd-group');
+    const kbdGroup = document.querySelector('.lw-kbd-group');
     if (kbdGroup) {
-      kbdGroup.innerHTML = '<kbd class="kree8-kbd">Ctrl</kbd><kbd class="kree8-kbd">Shift</kbd><kbd class="kree8-kbd">Space</kbd>';
+      kbdGroup.innerHTML = '<kbd class="lw-kbd">Ctrl</kbd><kbd class="lw-kbd">Shift</kbd><kbd class="lw-kbd">Space</kbd>';
     }
     const permHeader = document.querySelector('#pane-about .card-headline');
     if (permHeader) {

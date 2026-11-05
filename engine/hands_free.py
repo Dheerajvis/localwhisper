@@ -10,7 +10,7 @@ from engine.live_streamer import LiveStreamer
 
 class HandsFreeEngine:
     """
-    Continuous Hands-Free Dictation Engine (Gemini Chatbox Style).
+    Continuous Hands-Free Dictation Engine with Real-Time VAD.
     Passively monitors the auto-sensed microphone in real-time, detects voice activity,
     streams audio to Whisper, and types recognized words into the active cursor position
     in real time as the user speaks.

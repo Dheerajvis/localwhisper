@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=SF+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="kree8-theme">
-  <div class="kree8-canvas">
-    <!-- Kree8 Sidebar Navigation -->
-    <aside class="kree8-sidebar">
+<body class="lw-theme">
+  <div class="lw-canvas">
+    <!-- LocalWhisper Sidebar Navigation -->
+    <aside class="lw-sidebar">
       <div class="sidebar-brand">
         <div class="squircle-icon brand-icon sm">
           <img src="logo.png" alt="LocalWhisper" class="brand-logo-img">
@@ -83,7 +83,7 @@
     </aside>
 
     <!-- Main Content Stage -->
-    <main class="kree8-stage">
+    <main class="lw-stage">
       <!-- Stage Header -->
       <header class="stage-header">
         <div class="stage-header-title-group">
@@ -104,7 +104,7 @@
       <!-- TAB 1: AI Models & Storage -->
       <section class="tab-pane active" id="pane-models">
         <!-- Overview Stats Strip -->
-        <div class="kree8-card models-overview-card">
+        <div class="lw-card models-overview-card">
           <div class="overview-metric-tile">
             <div class="squircle-icon sm bg-mint">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg>
@@ -156,7 +156,7 @@
       <!-- TAB 2: Smart Flow & Modes -->
       <section class="tab-pane" id="pane-flow">
         <!-- Transcription Processing Mode -->
-        <div class="kree8-card">
+        <div class="lw-card">
           <div class="card-header-row">
             <div>
               <span class="eyebrow-text">PURIFICATION ENGINE</span>
@@ -166,7 +166,7 @@
           </div>
 
           <div class="modes-grid-container">
-            <div class="kree8-subcard mode-card active" data-flow="smart">
+            <div class="lw-subcard mode-card active" data-flow="smart">
               <div class="mode-card-top">
                 <div class="squircle-icon sm bg-mint">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
@@ -182,7 +182,7 @@
               </div>
             </div>
 
-            <div class="kree8-subcard mode-card" data-flow="developer">
+            <div class="lw-subcard mode-card" data-flow="developer">
               <div class="mode-card-top">
                 <div class="squircle-icon sm bg-cyan">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -198,7 +198,7 @@
               </div>
             </div>
 
-            <div class="kree8-subcard mode-card" data-flow="email">
+            <div class="lw-subcard mode-card" data-flow="email">
               <div class="mode-card-top">
                 <div class="squircle-icon sm bg-olive">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -214,7 +214,7 @@
               </div>
             </div>
 
-            <div class="kree8-subcard mode-card" data-flow="raw">
+            <div class="lw-subcard mode-card" data-flow="raw">
               <div class="mode-card-top">
                 <div class="squircle-icon sm bg-coral">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
@@ -233,7 +233,7 @@
         </div>
 
         <!-- Formatting & Automation Rules -->
-        <div class="kree8-card" style="margin-top: 16px;">
+        <div class="lw-card" style="margin-top: 16px;">
           <div class="card-header-row">
             <div>
               <span class="eyebrow-text">POST-PROCESSING RULES</span>
@@ -242,7 +242,7 @@
           </div>
 
           <div class="settings-rows-group">
-            <div class="kree8-setting-row">
+            <div class="lw-setting-row">
               <div class="setting-text-col">
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <span class="setting-label">Continuous Hands-Free Dictation</span>
@@ -250,59 +250,59 @@
                 </div>
                 <span class="setting-caption">Automatically types spoken words wherever you place your cursor without pressing any keys.</span>
               </div>
-              <label class="kree8-toggle">
+              <label class="lw-toggle">
                 <input type="checkbox" id="toggleHandsFree" checked>
                 <span class="toggle-track"></span>
               </label>
             </div>
 
-            <div class="kree8-divider"></div>
+            <div class="lw-divider"></div>
 
-            <div class="kree8-setting-row">
+            <div class="lw-setting-row">
               <div class="setting-text-col">
                 <span class="setting-label">Auto-Paste at Active Cursor</span>
                 <span class="setting-caption">Fires ⌘V directly into your active window immediately upon finishing dictation.</span>
               </div>
-              <label class="kree8-toggle">
+              <label class="lw-toggle">
                 <input type="checkbox" id="toggleAutoPaste" checked>
                 <span class="toggle-track"></span>
               </label>
             </div>
 
-            <div class="kree8-divider"></div>
+            <div class="lw-divider"></div>
 
-            <div class="kree8-setting-row">
+            <div class="lw-setting-row">
               <div class="setting-text-col">
                 <span class="setting-label">Vocal Filler Purifier</span>
                 <span class="setting-caption">Automatically strips disfluencies ("um", "uh", "you know", "like") from speech.</span>
               </div>
-              <label class="kree8-toggle">
+              <label class="lw-toggle">
                 <input type="checkbox" id="toggleRemoveFillers" checked>
                 <span class="toggle-track"></span>
               </label>
             </div>
 
-            <div class="kree8-divider"></div>
+            <div class="lw-divider"></div>
 
-            <div class="kree8-setting-row">
+            <div class="lw-setting-row">
               <div class="setting-text-col">
                 <span class="setting-label">Spoken Punctuation Parser</span>
                 <span class="setting-caption">Converts spoken command words ("period", "comma", "question mark", "new line") into punctuation.</span>
               </div>
-              <label class="kree8-toggle">
+              <label class="lw-toggle">
                 <input type="checkbox" id="togglePunctuation" checked>
                 <span class="toggle-track"></span>
               </label>
             </div>
 
-            <div class="kree8-divider"></div>
+            <div class="lw-divider"></div>
 
-            <div class="kree8-setting-row">
+            <div class="lw-setting-row">
               <div class="setting-text-col">
                 <span class="setting-label">Smart Capitalization</span>
                 <span class="setting-caption">Capitalizes sentence beginnings, proper nouns, and technical acronyms (AI, API, Mac, UI).</span>
               </div>
-              <label class="kree8-toggle">
+              <label class="lw-toggle">
                 <input type="checkbox" id="toggleCapitalize" checked>
                 <span class="toggle-track"></span>
               </label>
@@ -314,7 +314,7 @@
       <!-- TAB 3: Audio & Microphone -->
       <section class="tab-pane" id="pane-audio">
         <!-- Input Device Card -->
-        <div class="kree8-card">
+        <div class="lw-card">
           <div class="card-header-row">
             <div>
               <span class="eyebrow-text">CORE AUDIO HARDWARE</span>
@@ -325,14 +325,14 @@
           </div>
 
           <div class="device-select-container">
-            <select class="kree8-select" id="deviceSelect">
+            <select class="lw-select" id="deviceSelect">
               <option value="">Querying available microphones...</option>
             </select>
           </div>
         </div>
 
         <!-- Live Signal Meter -->
-        <div class="kree8-card" style="margin-top: 16px;">
+        <div class="lw-card" style="margin-top: 16px;">
           <div class="card-header-row">
             <div>
               <span class="eyebrow-text">SIGNAL CALIBRATION</span>
@@ -354,7 +354,7 @@
         </div>
 
         <!-- Silence & Hallucination Threshold -->
-        <div class="kree8-card" style="margin-top: 16px;">
+        <div class="lw-card" style="margin-top: 16px;">
           <div class="card-header-row">
             <div>
               <span class="eyebrow-text">NOISE SUPPRESSION</span>
@@ -365,7 +365,7 @@
           </div>
 
           <div class="slider-wrapper">
-            <input type="range" class="kree8-slider" id="silenceSlider" min="0.0010" max="0.0090" step="0.0002" value="0.0028">
+            <input type="range" class="lw-slider" id="silenceSlider" min="0.0010" max="0.0090" step="0.0002" value="0.0028">
             <div class="slider-labels-row">
               <span>Sensitive (Quiet room / whisper)</span>
               <span>Balanced (Recommended)</span>
@@ -377,21 +377,21 @@
 
       <!-- TAB 4: Global Shortcuts -->
       <section class="tab-pane" id="pane-hotkeys">
-        <div class="kree8-card">
+        <div class="lw-card">
           <div class="card-header-row">
             <div>
               <span class="eyebrow-text">SYSTEM INTEGRATION</span>
               <h2 class="card-headline">Global Dictation Shortcut</h2>
               <p class="card-subhead">Instantly start or stop transcription from any macOS application.</p>
             </div>
-            <div class="kree8-kbd-group">
-              <kbd class="kree8-kbd">⌘</kbd>
-              <kbd class="kree8-kbd">⇧</kbd>
-              <kbd class="kree8-kbd">Space</kbd>
+            <div class="lw-kbd-group">
+              <kbd class="lw-kbd">⌘</kbd>
+              <kbd class="lw-kbd">⇧</kbd>
+              <kbd class="lw-kbd">Space</kbd>
             </div>
           </div>
 
-          <div class="kree8-divider" style="margin: 20px 0;"></div>
+          <div class="lw-divider" style="margin: 20px 0;"></div>
 
           <div class="card-header-row">
             <div>
@@ -399,7 +399,7 @@
               <h3 class="card-headline">Activation Mode</h3>
               <p class="card-subhead">Select your preferred interaction model.</p>
             </div>
-            <div class="kree8-segmented-pill">
+            <div class="lw-segmented-pill">
               <button class="seg-pill-btn active" data-hk-mode="toggle">Tap to Toggle</button>
               <button class="seg-pill-btn" data-hk-mode="push_to_talk">Push-to-Talk (Hold)</button>
             </div>
@@ -410,7 +410,7 @@
       <!-- TAB 5: System & Privacy -->
       <section class="tab-pane" id="pane-about">
         <!-- Permissions Card -->
-        <div class="kree8-card">
+        <div class="lw-card">
           <div class="card-header-row">
             <div>
               <span class="eyebrow-text">SYSTEM SECURITY</span>
@@ -420,7 +420,7 @@
           </div>
 
           <div class="permissions-dual-grid">
-            <div class="kree8-subcard perm-subcard">
+            <div class="lw-subcard perm-subcard">
               <div class="perm-subcard-header">
                 <div class="squircle-icon sm bg-mint">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
@@ -431,7 +431,7 @@
               <p class="perm-body">Captures audio for local in-memory transcription. Audio is never saved to disk.</p>
             </div>
 
-            <div class="kree8-subcard perm-subcard">
+            <div class="lw-subcard perm-subcard">
               <div class="perm-subcard-header">
                 <div class="squircle-icon sm bg-mint">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -446,7 +446,7 @@
         </div>
 
         <!-- 100% Offline Guarantee Banner -->
-        <div class="kree8-card manifesto-card" style="margin-top: 16px;">
+        <div class="lw-card manifesto-card" style="margin-top: 16px;">
           <div class="manifesto-content">
             <div class="squircle-icon lg bg-mint">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -460,7 +460,7 @@
         </div>
 
         <!-- Engine Specifications -->
-        <div class="kree8-card" style="margin-top: 16px;">
+        <div class="lw-card" style="margin-top: 16px;">
           <div class="card-header-row">
             <div>
               <span class="eyebrow-text">SPECIFICATIONS</span>

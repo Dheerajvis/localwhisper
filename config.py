@@ -36,7 +36,7 @@ DEFAULT_WHISPER_MODEL = "base.en"
 # int8 is universally supported on CPU across Windows, macOS and Linux without CUDA requirements
 WHISPER_COMPUTE_TYPE = "int8"
 
-# Post-processing / Smart Flow (WhisperFlow parity)
+# Post-processing / Smart Flow dictation pipeline
 # Modes: "smart" (removes filler words, formats punct), "developer", "email", "raw"
 DEFAULT_FLOW_MODE = "smart"
 

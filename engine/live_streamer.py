@@ -97,12 +97,12 @@ def strip_hallucinated_replay(typed_words: List[str], candidate_words: List[str]
 
 class LiveStreamer:
     """
-    Gemini-Grade Hardened Real-Time Streaming Transcriber.
+    Hardened Real-Time Streaming Transcriber.
     
     Guarantees:
     1. Zero Duplicate Words: Monotonic Cutoff Floor prevents earlier words from ever being re-typed.
     2. Zero Gibberish / Loops: Strict English ASCII validation, VAD gating, and repetition loop collapsing.
-    3. Gemini-Style Local Agreement: Incomplete trailing words are held back until confirmed across ticks.
+    3. Multi-Tick Local Agreement: Incomplete trailing words are held back until confirmed across ticks.
     4. Cursor Typing: Real-time native typing directly at active cursor without clipboard destruction.
     """
 
@@ -197,7 +197,7 @@ class LiveStreamer:
 
     def _extract_new_words(self, valid_words: List[str]) -> List[str]:
         """
-        Monotonic Sequence Alignment & Extraction Engine (Gemini Parity).
+        Monotonic Sequence Alignment & Extraction Engine.
         
         Guarantees that words spoken earlier from the beginning of the audio snapshot
         are NEVER re-typed, even if Whisper revises earlier syllables or drops unstressed words.
@@ -336,7 +336,7 @@ class LiveStreamer:
             if len(clean_words) >= 2 and len(set(clean_words)) == 1:
                 return ""
 
-            # Extract only brand new words using Gemini-grade monotonic alignment
+            # Extract only brand new words using robust monotonic alignment
             new_words = self._extract_new_words(valid_words)
             if not new_words:
                 return ""

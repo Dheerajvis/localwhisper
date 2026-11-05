@@ -124,3 +124,4 @@ if sys.platform == 'darwin':
             'LSUIElement': False,
         }
     )
+

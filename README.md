@@ -8,7 +8,7 @@
 [![Offline](https://img.shields.io/badge/Privacy-100%25%20Offline-success.svg)]()
 [![GitHub Release](https://img.shields.io/github/v/release/Dheerajvis/localwhisper)](https://github.com/Dheerajvis/localwhisper/releases)
 
-LocalWhisper is a privacy-first, completely local speech-to-text desktop application inspired by **Wispr Flow / WhisperFlow** and the **Gemini voice typing** experience. Built with a signature **Kree8 Studio** aesthetic, it features a minimal floating capsule pill with audio-reactive spectrum waveforms and a comprehensive Obsidian & Mint Green Settings Dashboard.
+LocalWhisper is a privacy-first, completely local speech-to-text desktop application featuring real-time live voice dictation. Built with a modern obsidian and mint aesthetic, it features a minimal floating capsule pill with audio-reactive spectrum waveforms and a comprehensive offline Settings Dashboard.
 
 It runs entirely on-device with **zero external API calls**, zero telemetry, and zero latency overhead.
 
@@ -29,7 +29,7 @@ Skip setup and download the pre-compiled builds directly from [**GitHub Releases
 
 - 🔒 **100% Offline & Private**: Audio is recorded and transcribed in-memory on your machine. No cloud, no subscriptions, no telemetry.
 - ⚡ **Real-Time Live Dictation**: Words stream and type directly at your active text cursor in real time as you speak—no waiting for silence or hitting stop.
-- 🎯 **Continuous Hands-Free Mode (Gemini Style)**: Intelligent Voice Activity Detection (VAD) monitors your speech passively and automatically types when you speak.
+- 🎯 **Continuous Hands-Free Mode**: Intelligent Voice Activity Detection (VAD) monitors your speech passively and automatically types when you speak.
 - 🛡️ **Hardware Fault-Tolerance & Auto-Fallback**: Automatically senses your active microphone and seamlessly cascades from disconnected Bluetooth earbuds (AirPods, Galaxy Buds, realme Buds) to the built-in microphone without interrupting your dictation.
 - 💊 **Minimalist Floating Capsule Pill**:
   - Ultra-sleek glassmorphic capsule that floats on top of all applications.
@@ -154,7 +154,7 @@ localwhisper/
 │   ├── styles.css           # Pill styling & 12-bar spectrum animation
 │   ├── app.js               # Capsule event handling & audio reactivity
 │   ├── settings.html        # Obsidian & Mint Settings Dashboard
-│   ├── settings.css         # Kree8 design tokens & dashboard styling
+│   ├── settings.css         # Modern design tokens & dashboard styling
 │   ├── settings.js          # Dynamic model management & hardware controls
 │   └── refraction.js        # Interactive caustic dispersion background
 └── tests/
